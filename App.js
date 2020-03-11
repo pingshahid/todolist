@@ -10,14 +10,15 @@ export default function App() {
   goForFetch = () => {
     setLoading(true);    
     setResults([]);
+    console.log('Fire request');
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then(response => response.json())
       .then((responseJson) => {
-        //console.log('getting data from fetch', responseJson)
+        console.log('getting data from fetch', responseJson)
         setTimeout(() => {
           setResults(responseJson);
           console.log('request');
-          // console.log(responseJson);
+           console.log(responseJson);
         }, 2000)
 
         setLoading(false);
@@ -29,6 +30,10 @@ export default function App() {
       });
 
   }
+
+		React.useEffect(() => {
+    goForFetch();
+    },[]);
 
 
   if (results.length == 0) {
